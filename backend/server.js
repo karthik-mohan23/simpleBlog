@@ -1,9 +1,17 @@
 import express from "express";
+import postsRoutes from "./routes/postsRoutes.js";
+import mongoose from "mongoose";
 
 const app = express();
 
-app.get("/", (req, res) => {
-  res.send("Hello from Server");
-});
+app.use(express.json());
 
-app.listen(3000, () => console.log("server running on PORT 3000"));
+app.use("/api/posts", postsRoutes);
+
+mongoose
+  .connect("mongodb://localhost:27017")
+  .then(() => {
+    console.log("connected to db");
+    app.listen(3000, () => console.log("server running on PORT 3000"));
+  })
+  .catch((err) => console.log(err));
