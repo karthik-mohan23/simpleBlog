@@ -1,12 +1,11 @@
 import express from "express";
 
+import { createNewPost, getAllPosts } from "../controllers/postsController.js";
+
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  res.status(200).json({ message: "Hello User" });
-});
-router.post("/", (req, res) => {
-  res.status(200).json({ message: "Post method" });
-});
+router.post("/", createNewPost);
+
+router.get("/", getAllPosts);
 
 export default router;

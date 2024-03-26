@@ -9,7 +9,7 @@ app.use(express.json());
 app.use("/api/posts", postsRoutes);
 
 mongoose
-  .connect("mongodb://localhost:27017")
+  .connect("mongodb://localhost:27017/demo_db")
   .then(() => {
     console.log("connected to db");
     app.listen(3000, () => console.log("server running on PORT 3000"));
