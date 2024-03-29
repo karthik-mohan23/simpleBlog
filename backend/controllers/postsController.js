@@ -5,7 +5,7 @@ import User from "../models/userModel.js";
 // get->/api/posts
 const getAllPosts = async (req, res) => {
   try {
-    const allPosts = await Post.find({});
+    const allPosts = await Post.find({}).sort({ createdAt: "desc" });
     return res.status(200).json({ posts: allPosts });
   } catch (error) {
     console.log(error);
@@ -13,12 +13,14 @@ const getAllPosts = async (req, res) => {
   }
 };
 // get user posts
-// get->/api/posts
+// get->/api/posts/:id
 const getUserPosts = async (req, res) => {
   // Grab the authenticated user from the request body
   const user = await User.findById(req.user._id);
   try {
-    const userPosts = await Post.find({ user: user._id });
+    const userPosts = await Post.find({ user: user._id }).sort({
+      createdAt: "desc",
+    });
     return res.status(200).json({ userPosts });
   } catch (error) {
     console.log(error);
