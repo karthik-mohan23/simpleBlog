@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* with tailwind classes */
+/* @layer components {
+  .nav-link {
+    @apply w-10 h-10 rounded-md hover:bg-indigo-600;
+  }
+} */
+/* regular css */
+/* @layer components {
+  .nav-link {
+    font-size: 24px;
+  }
+} */
